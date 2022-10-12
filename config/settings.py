@@ -39,7 +39,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-ANOTHER_PEOPLE_APPS = []
+ANOTHER_PEOPLE_APPS = ["django_countries"]
 
 PROJECT_APPS = [
     "users.apps.UsersConfig",
