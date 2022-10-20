@@ -80,6 +80,14 @@ class Room(core_models.TimeStampedModel):
     #모든 이름을 사용자의 이름으로 넣는것.
     def __str__(self):
         return self.name
+    
+    def total_rating(self):
+        all_reviews = self.reviews.all()
+        all_ratings = []
+        for review in all_reviews:
+            all_ratings.append(review.rating_average())
+        return 0
+
 
 
 
