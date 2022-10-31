@@ -8,11 +8,8 @@ class Command(BaseCommand):
 
     help = "This command auto create amenities "
 
-    """     def add_arguments(self, parser):
-    parser.add_argument(
-        "--times", help="How many create amenities"
-    )
-    """
+    def add_argument(self, parser):
+        parser.add_argument("--number", help="How many data do you want to create")
 
     def handle(self,*args, **options):
         amenities = [

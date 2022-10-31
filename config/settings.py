@@ -38,7 +38,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-ANOTHER_PEOPLE_APPS = ["django_countries"]
+ANOTHER_PEOPLE_APPS = ["django_countries","django-seed"]
 
 PROJECT_APPS = [
     "users.apps.UsersConfig",
