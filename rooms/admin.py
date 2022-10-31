@@ -13,15 +13,22 @@ class ItemAdmin(admin.ModelAdmin):
     def used_by(self, obj):
         return obj.rooms.count()
 
+class PhotoInline(admin.TabularInline):
+
+    model = models.Photo
+
+
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
 
     """ Room Admin Definition """
 
+    inlines = (PhotoInline,)
+
     fieldsets = (
     (
         "Basic info",
-        {"fields":("name", "description", "country", "address", "price")},
+        {"fields":("name", "description", "country", "city", "address", "price")},
     ),
 
     ("Times", {"fields": ("check_in", "check_out", "instant_book")}),
