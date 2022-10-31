@@ -6,7 +6,7 @@ class Command(BaseCommand):
 
     """ Command to Definition """
 
-    help = "This command auto create amenities "
+    help = "This command auto create facilities "
 
     # def add_argument(self, parser):
     #     parser.add_argument("--number", help="How many data do you want to create")
