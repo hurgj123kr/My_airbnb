@@ -18,20 +18,21 @@ class LoginForm(forms.Form):
         except models.User.DoesNotExist:
             self.add_error("email",forms.ValidationError("User does not exist"))
 
-class SignupForm(forms.Form):
-    first_name = forms.CharField(max_length=50)
-    last_name = forms.CharField(max_length=50)
-    email = forms.EmailField()
+class SignupForm(forms.ModelForm):
+    class Meta:
+        model = models.User
+        fields = ("first_name", "last_name", "email")
     password = forms.CharField(widget=forms.PasswordInput)
     check_password = forms.CharField(widget=forms.PasswordInput, label="Confirm password")
 
-    def clean_email(self):
-        email = self.cleaned_data.get("email")
-        try:
-            models.User.objects.get(email=email)
-            raise forms.ValidationError("User already exits with that email")
-        except models.User.DoesNotExist:
-            return email
+    # python signup email create 구현 방식
+    # def clean_email(self):
+    #     email = self.cleaned_data.get("email")
+    #     try:
+    #         models.User.objects.get(email=email)
+    #         raise forms.ValidationError("User already exits with that email")
+    #     except models.User.DoesNotExist:
+    #         return email
     
     def clean_password1(self):
 
@@ -42,14 +43,12 @@ class SignupForm(forms.Form):
         else:
             return password
     
-    def save(self):
-        first_name = self.cleaned_data.get("first_name")
-        last_name = self.cleaned_data.get("last_name")
+    def save(self, *args, **kwargs):
+        user = super().save(commit=False)
         email = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")
-        user = models.User.objects.create_user(email, email, password)
-        user.first_name = first_name
-        user.last_name = last_name
+        user.username = email
+        user.set_password(password)
         user.save()
 
 
