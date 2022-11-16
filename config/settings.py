@@ -141,8 +141,8 @@ MEDAA_URL = "/media/"
 
 EMAIL_HOST = "smtp.mailgun.org"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = "brad@sandbox7d5e3ebc47f548baa78ce2494a4d775f.mailgun.org"
-EMAIL_HOST_PASSWORD =""
+EMAIL_HOST_USER = os.environ.get("MAILGUN_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("MAILGUN_HOST_PASSWORD")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
