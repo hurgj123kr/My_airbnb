@@ -136,6 +136,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 
 MEDAA_URL = "/media/"
 
+
+#Email Configration
+
+EMAIL_HOST = "smtp.mailgun.org"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = "brad@sandbox7d5e3ebc47f548baa78ce2494a4d775f.mailgun.org"
+EMAIL_HOST_PASSWORD =""
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
