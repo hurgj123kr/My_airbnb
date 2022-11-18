@@ -21,8 +21,33 @@ class LoginForm(forms.Form):
 
 # UsercreationForm way 
 class SignUpForm(UserCreationForm):
+    class Meta:
+        model= models.User
+        fields = ("first_name", "last_name", "email")
+        
+    password = forms.CharField(widget=forms.PasswordInput)
+    check_password = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
 
-    username = forms.EmailField(label="Email")
+    def clean_password1(self):
+        password = self.cleaned_data.get("password")
+        check_password = self.cleaned_data.get("check_password")
+        if password != check_password:
+            raise forms.ValidationError("Password confirmation does not match")
+        else:
+            return password
+
+    def save(self, *args, **kwargs):
+        user = super().save(commit=False)
+        email = self.cleaned_data.get("email")
+        password = self.cleaned_data.get("password")
+        user.username = email
+        user.set_password(password)
+        user.save()
+        
+
+
+
+
 
 #django Model.Form way
 # class SignupForm(forms.ModelForm):
@@ -32,31 +57,30 @@ class SignUpForm(UserCreationForm):
 #     password = forms.CharField(widget=forms.PasswordInput)
 #     check_password = forms.CharField(widget=forms.PasswordInput, label="Confirm password")
 
-#     # python signup email create 구현 방식
-#     # def clean_email(self):
-#     #     email = self.cleaned_data.get("email")
-#     #     try:
-#     #         models.User.objects.get(email=email)
-#     #         raise forms.ValidationError("User already exits with that email")
-#     #     except models.User.DoesNotExist:
-#     #         return email
-    
-    def clean_password1(self):
+    # python signup email create 구현 방식
+    # def clean_email(self):
+    #     email = self.cleaned_data.get("email")
+    #     try:
+    #         models.User.objects.get(email=email)
+    #         raise forms.ValidationError("User already exits with that email")
+    #     except models.User.DoesNotExist:
+    #         return email
+    # def clean_password1(self):
 
-        password = self.cleaned_data.get("password")
-        check_password = self.cleaned_data.get("check_password")
-        if password != check_password:
-            raise forms.ValidationError("Password confirmation does not match")
-        else:
-            return password
+    #     password = self.cleaned_data.get("password")
+    #     check_password = self.cleaned_data.get("check_password")
+    #     if password != check_password:
+    #         raise forms.ValidationError("Password confirmation does not match")
+    #     else:
+    #         return password
     
-    def save(self, *args, **kwargs):
-        user = super().save(commit=False)
-        email = self.cleaned_data.get("email")
-        password = self.cleaned_data.get("password")
-        user.username = email
-        user.set_password(password)
-        user.save()
+    # def save(self, *args, **kwargs):
+    #     user = super().save(commit=False)
+    #     email = self.cleaned_data.get("email")
+    #     password = self.cleaned_data.get("password")
+    #     user.username = email
+    #     user.set_password(password)
+    #     user.save()
 
 
 
