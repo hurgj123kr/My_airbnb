@@ -53,7 +53,7 @@ def log_out(request):
 class SignupView(FormView):
 
     template_name = "users/signup.html"
-    form_class = forms.SignupForm
+    form_class = forms.SignUpForm
     success_url = reverse_lazy("core:home")
     initial = {"first_name":"test", "last_name":"god", "email":"dddd@naver.com"}
 
