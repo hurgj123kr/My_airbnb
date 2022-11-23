@@ -61,7 +61,7 @@ form {
 
 .message {
     animation: messageFadeIn 5s ease-in-out forwards;
-    &.error {
+    &.error{
         @apply bg-red-600;
     }
     &.info{
