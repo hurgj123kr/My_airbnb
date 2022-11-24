@@ -8,10 +8,11 @@ from django.shortcuts import redirect, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.base import ContentFile
 from django.contrib import messages
-from . import forms,models
+from django.contrib.messages.views import SuccessMessageMixin
+from . import forms,models,mixins
 
 
-class LoginView(FormView):
+class LoginView(mixins.LoggedOutOnlyView,FormView):
 
     # python만 function식 구현
 
@@ -53,7 +54,7 @@ def log_out(request):
     return redirect(reverse("core:home"))
 
 
-class SignupView(FormView):
+class SignupView(mixins.LoggedOutOnlyView, FormView):
 
     template_name = "users/signup.html"
     form_class = forms.SignUpForm
@@ -209,7 +210,7 @@ def kakao_callback(request):
         messages.error(request, e)
         return redirect(reverse("users:login"))
  
-class UserProfileView(DetailView):
+class UserProfileView(mixins.LoggedOutOnlyView, DetailView):
     
     model = models.User
     context_object_name= "user_obj"
@@ -228,19 +229,27 @@ class UpdateProfileView(UpdateView):
         "language",
         "currency",
     )
+
+    success_message ="Profile Updated"
+
     
     def get_object(self, queryset=None):
         return self.request.user
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
+        form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
+        form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
+        form.fields["bio"].widget.attrs = {"placeholder": "Bio"}
         form.fields["birthdate"].widget.attrs = {"placeholder": "Birthdate"}
         form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
         return form
 
-class UpdatePasswordView(PasswordChangeView):
+class UpdatePasswordView(SuccessMessageMixin,PasswordChangeView):
     model = models.User
     template_name = "users/update-password.html"
+    success_message ="Password Updated"
+
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
@@ -248,6 +257,9 @@ class UpdatePasswordView(PasswordChangeView):
         form.fields["new_password1"].widget.attrs = {"placeholder": "New password"}
         form.fields["new_password2"].widget.attrs = {"placeholder": "Cofirm new password"}
         return form
+    
+    def get_success_url(self):
+        return self.request.user.get_absolute_url()
 
 
 
