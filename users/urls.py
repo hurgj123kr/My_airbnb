@@ -13,5 +13,6 @@ urlpatterns = [
     path("signup/", views.SignupView.as_view(), name="signup"),
     path("verify/<str:key>/", views.verification_email, name="verification_email"),
     path("update-profile/", views.UpdateProfileView.as_view(), name="update"),
+    path("update-password/", views.UpdatePasswordView.as_view(), name="password"),
     path("<int:pk>/", views.UserProfileView.as_view(), name="profile"),
 ]
