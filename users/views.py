@@ -12,7 +12,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from . import forms,models,mixins
 
 
-class LoginView(mixins.LoggedOutOnlyView,FormView):
+class LoginView(mixins.LoggedOutOnlyView, FormView):
 
     # python만 function식 구현
 
@@ -34,9 +34,9 @@ class LoginView(mixins.LoggedOutOnlyView,FormView):
     #     return render(request, "users/login.html", {"form": form}) 
 
     # classform django식 구현
+            
     template_name = "users/login.html"
     form_class = forms.LoginForm
-    success_url = reverse_lazy("core:home")
 
     def form_valid(self, form):
         email = form.cleaned_data.get("email")
@@ -45,6 +45,13 @@ class LoginView(mixins.LoggedOutOnlyView,FormView):
         if user is not None:
             login(self.request, user)
         return super().form_valid(form)
+    
+    def get_success_url(self):
+        next_arg = self.request.GET.get("next")
+        if next_arg is not None:
+            return next_arg
+        else:
+            return reverse("core:home")
         
 
     
@@ -210,13 +217,13 @@ def kakao_callback(request):
         messages.error(request, e)
         return redirect(reverse("users:login"))
  
-class UserProfileView(mixins.LoggedOutOnlyView, DetailView):
+class UserProfileView(DetailView):
     
     model = models.User
     context_object_name= "user_obj"
 
 
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(mixins.LoggedInOnlyView, SuccessMessageMixin,UpdateView):
 
     model = models.User
     template_name = "users/update-profile.html"
@@ -245,7 +252,12 @@ class UpdateProfileView(UpdateView):
         form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
         return form
 
-class UpdatePasswordView(SuccessMessageMixin,PasswordChangeView):
+class UpdatePasswordView(mixins.EmailLoginOnlyView,
+                         mixins.LoggedInOnlyView,
+                         SuccessMessageMixin,
+                         PasswordChangeView
+                         ):
+
     model = models.User
     template_name = "users/update-password.html"
     success_message ="Password Updated"
