@@ -138,7 +138,7 @@ class RoomPhotoView(user_mixins.LoggedInOnlyView, DetailView):
     """ Room photo Definition """
 
     model = models.Room
-    template_name = "room_photos.html"
+    template_name = "rooms/room_photos.html"
 
     def get_object(self, queryset=None):
         room = super().get_object(queryset=queryset)
