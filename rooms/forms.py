@@ -17,4 +17,13 @@ class SearchForm(forms.Form):
     superhost = forms.BooleanField(required=False)
     amenities = forms.ModelMultipleChoiceField( queryset=models.Amenity.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
     facilities = forms.ModelMultipleChoiceField( queryset=models.Facility.objects.all(), required=False, widget=forms.CheckboxSelectMultiple)
+
+class CreatePhotoForm(forms.ModelForm):
+    class Meta:
+        model = models.Photo
+        fields = ("caption", "file")
+
+    def save(self, pk ,*args, **kwargs):
+        photo = super().save(commit=False)
+        print(pk)
     
