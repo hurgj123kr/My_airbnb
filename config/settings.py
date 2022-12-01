@@ -38,7 +38,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-ANOTHER_PEOPLE_APPS = ["django_countries","django-seed"]
+ANOTHER_PEOPLE_APPS = ["django_countries","django_seed"]
 
 PROJECT_APPS = [
     "users.apps.UsersConfig",
@@ -50,7 +50,7 @@ PROJECT_APPS = [
     "conversations.apps.ConversationsConfig",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+INSTALLED_APPS = DJANGO_APPS + ANOTHER_PEOPLE_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
