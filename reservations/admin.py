@@ -17,3 +17,8 @@ class ReservationAdmin(admin.ModelAdmin):
     )
 
     list_filter = ("status",)
+
+
+@admin.register(models.BookDay)
+class BookedDayAdmin(admin.ModelAdmin):
+    pass
