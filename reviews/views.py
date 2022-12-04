@@ -1,3 +1,7 @@
 from django.shortcuts import render
+from rooms import models as room_models
+from . import models
 
-# Create your views here.
+
+def create_review(request, room):
+    pass
