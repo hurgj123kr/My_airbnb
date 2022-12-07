@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-07 13:31+0900\n"
+"POT-Creation-Date: 2022-12-07 19:28+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,10 +22,79 @@ msgstr ""
 msgid "Search By City"
 msgstr "도시를 검색해주세요."
 
-#: templates/partials/footer.html:4
+#: templates/partials/footer.html:5
 msgid "Please don't copy us"
 msgstr "남의 홈페이지를 도용 하지마세요."
 
-#: templates/partials/footer.html:6
+#: templates/partials/footer.html:7
 msgid "All rights reserved"
 msgstr "모든 저작권은 개발자에게 있습니다."
+
+#: templates/rooms/room_list.html:24
+#, python-format
+msgid "Page %(current_page)s of %(total_pages)s"
+msgstr "페이지 %(current_page)s of %(total_pages)s"
+
+#: users/mixins.py:14 users/mixins.py:23
+msgid "Can't go there"
+msgstr "해당 페이지로 이동을 할수없습니다."
+
+#: users/models.py:18
+msgid "Male"
+msgstr "남성"
+
+#: users/models.py:19
+msgid "Female"
+msgstr "여성"
+
+#: users/models.py:20
+msgid "Other"
+msgstr "다른 성"
+
+#: users/models.py:27
+msgid "English"
+msgstr "영어"
+
+#: users/models.py:28
+msgid "Korean"
+msgstr "한국어"
+
+#: users/models.py:34
+msgid "USD"
+msgstr "유로"
+
+#: users/models.py:35
+msgid "KRW"
+msgstr "원"
+
+#: users/models.py:43
+msgid "Email"
+msgstr "이메일"
+
+#: users/models.py:44
+msgid "Github"
+msgstr "깃허브"
+
+#: users/models.py:45
+msgid "Kakao"
+msgstr "카카오"
+
+#: users/models.py:51
+msgid "gender"
+msgstr "성별"
+
+#: users/models.py:54
+msgid "language"
+msgstr "언어"
+
+#: users/models.py:55
+msgid "currency"
+msgstr "화폐"
+
+#: users/models.py:59
+msgid "login_method"
+msgstr "로그인 방식"
+
+#: users/models.py:73
+msgid "Verify Mybnb Account"
+msgstr "로그인 인증 된 회원입니다."

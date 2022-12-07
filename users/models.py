@@ -1,4 +1,5 @@
 import uuid
+from django.utils.translation import gettext_lazy as _
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -14,24 +15,24 @@ class User(AbstractUser):
     GENDER_OTHER = "other"
 
     GENDER_CHOICES = (
-        (GENDER_MALE, "Male"),
-        (GENDER_FEMALE, "Female"),
-        (GENDER_OTHER, "Other"),
+        (GENDER_MALE, _("Male")),
+        (GENDER_FEMALE, _("Female")),
+        (GENDER_OTHER, _("Other")),
     )
 
     LANGUAGE_ENGLISH = "en"
     LANGUAGE_KOREAN = "ko"
     
     LANGUAGE_CHOICES = (
-        (LANGUAGE_ENGLISH, "English"),
-        (LANGUAGE_KOREAN, "Korean"),
+        (LANGUAGE_ENGLISH, _("English")),
+        (LANGUAGE_KOREAN, _("Korean")),
     )
     CURRENCY_USD = "usd"
     CURRENCY_KRW = "krw"
 
     CURRENCY_CHOICES = (
-        (CURRENCY_USD, "USD"),
-        (CURRENCY_KRW, "KRW"),
+        (CURRENCY_USD, _("USD")),
+        (CURRENCY_KRW, _("KRW")),
     )
 
     LOGIN_EMAIL = "email"
@@ -39,23 +40,23 @@ class User(AbstractUser):
     LOGIN_KAKAO = "kakao"
 
     LOGIN_CHOICES = (
-        (LOGIN_EMAIL, "Email"),
-        (LOGIN_GITHUB, "Github"),
-        (LOGIN_KAKAO, "Kakao"),
+        (LOGIN_EMAIL, _("Email")),
+        (LOGIN_GITHUB, _("Github")),
+        (LOGIN_KAKAO, _("Kakao")),
     )
 
     bio = models.TextField(blank=True)
     avatar = models.ImageField(upload_to="avatars", blank=True)
     gender = models.CharField(
-        choices=GENDER_CHOICES, max_length=10,blank=True
+       _("gender") ,choices=GENDER_CHOICES, max_length=10,blank=True
     )
     birthdate = models.DateField(blank=True, null=True)
-    language = models.CharField(choices=LANGUAGE_CHOICES,max_length=5, blank=True, default=LANGUAGE_KOREAN)
-    currency = models.CharField(choices=CURRENCY_CHOICES, max_length=5, blank=True, default=CURRENCY_KRW)
+    language = models.CharField(_("language"),choices=LANGUAGE_CHOICES,max_length=5, blank=True, default=LANGUAGE_KOREAN)
+    currency = models.CharField(_("currency"),choices=CURRENCY_CHOICES, max_length=5, blank=True, default=CURRENCY_KRW)
     superhost = models.BooleanField(default=False)
     email_verified = models.BooleanField(default=False)
     email_secret = models.CharField(max_length=100, default="", blank=True)
-    login_method = models.CharField(choices=LOGIN_CHOICES, max_length=20, default=LOGIN_EMAIL )
+    login_method = models.CharField(_("login_method"),choices=LOGIN_CHOICES, max_length=20, default=LOGIN_EMAIL )
 
     def get_absolute_url(self):
         return reverse("users:profile", kwargs={"pk": self.pk})
@@ -69,7 +70,7 @@ class User(AbstractUser):
                 "emails/verify_email.html", {"secret":secret}
             )
             send_mail(
-                "Verify Mybnb Account",
+                _("Verify Mybnb Account"),
                 strip_tags(html_message),
                 settings.EMAIL_FROM,
                 [self.email],
