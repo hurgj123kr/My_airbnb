@@ -30,12 +30,14 @@
 
     {% include "partials/footer.html" %}
     <script>
-      const langSelect = document.getElementById("js-lang");
-      const handleLangChange = () => {
-          const selected = langSelect.value;
-          fetch('{% url "users:switch-language" %}?lang=${selected}').then(() => window.location.reload()); 
-      }
-      langSelect.addEventListener("change", handleLangChange);
+          const jsLang = document.getElementById("js-lang");
+          const handleChange = () => {
+            const selected = jsLang.value;
+            fetch(`{% url 'users:switch-language'%}?lang=${selected}`).then(() =>
+              window.location.reload()
+            );
+          };
+          jsLang.addEventListener("change", handleChange);
     </script>
   </body>
 </html>

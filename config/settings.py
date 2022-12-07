@@ -160,3 +160,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 #locale
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
+
+LANGUAGE_COOKIE_NAME = "django_langauge"

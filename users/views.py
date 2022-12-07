@@ -12,6 +12,7 @@ from django.core.files.base import ContentFile
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from . import forms,models,mixins
+from config import settings
 
 
 class LoginView(mixins.LoggedOutOnlyView, FormView):
@@ -286,8 +287,11 @@ def switch_hosting(request):
 def switch_language(request):
     lang = request.GET.get("lang", None)
     if lang is not None:
-        pass
-    return HttpResponse(status=200)
+        response = HttpResponse(200)
+    print(settings.LANGUAGE_COOKIE_NAME)
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang)
+    print(settings.LANGUAGE_COOKIE_NAME)    
+    return response
 
 
 
