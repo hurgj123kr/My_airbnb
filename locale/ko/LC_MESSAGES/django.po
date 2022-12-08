@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-08 10:45+0900\n"
+"POT-Creation-Date: 2022-12-08 16:05+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: lists/templatetags/on_favs.py:14
+msgid "My Favorites Houses"
+msgstr "자신의 가장 좋아하는 숙소"
 
 #: templates/base.html:21
 msgid "Search By City"
@@ -40,7 +44,7 @@ msgstr "호스팅 시작하기"
 
 #: templates/partials/nav.html:15
 msgid "Create Room"
-msgstr "방 만들기"
+msgstr "숙소 만들기"
 
 #: templates/partials/nav.html:17
 msgid "Profile"
@@ -58,31 +62,33 @@ msgstr "로그인"
 msgid "Sign up"
 msgstr "회원가입"
 
-#: templates/rooms/room_detail.html:31
-msgid "Save to Favourites"
-msgstr "좋아하는 방 저장하기"
+#: templates/rooms/room_detail.html:34
+msgid "Remove to Favourites"
+msgstr "좋아하는 숙소  삭제하기"
 
-#: templates/rooms/room_detail.html:43
+#: templates/rooms/room_detail.html:36
+msgid "Save to Favourites"
+msgstr "좋아하는 숙소 저장하기"
+
+#: templates/rooms/room_detail.html:50
 msgid "Amenities"
 msgstr "편의시설"
 
-#: templates/rooms/room_detail.html:49
+#: templates/rooms/room_detail.html:56
 msgid "Facilities"
 msgstr "공공시설"
 
-#: templates/rooms/room_detail.html:55
+#: templates/rooms/room_detail.html:62
 msgid "House Rules"
 msgstr "숙소 규칙"
 
-#: templates/rooms/room_detail.html:61
+#: templates/rooms/room_detail.html:68
 msgid "Reviews"
 msgstr "리뷰"
 
-#: templates/rooms/room_detail.html:96
-#, fuzzy
-#| msgid "Create Room"
+#: templates/rooms/room_detail.html:103
 msgid "Edit Room"
-msgstr "방 변경하기"
+msgstr "숙소 변경하기"
 
 #: templates/rooms/room_list.html:24
 #, python-format

@@ -9,4 +9,4 @@ def save_room(request,room_pk):
             user= request.user, name = "My Favourites Room" 
         )
         the_list.rooms.add(room)
-    return redirect(reverse("room:detail", kwargs={"pk": room_pk}))
+    return redirect(reverse("rooms:detail", kwargs={"pk": room_pk}))
