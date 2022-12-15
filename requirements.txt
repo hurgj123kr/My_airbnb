@@ -58,4 +58,4 @@ urllib3==1.26.12
 wcwidth==0.1.9
 websocket-client==0.59.0
 xlwt==1.3.0
-psycopg2==3.1
+psycopg3==3.1
