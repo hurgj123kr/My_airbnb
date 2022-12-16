@@ -162,3 +162,7 @@ node_modules/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+#sqlite
+sqlite-autoconf-3400000/*
+sqlite-autoconf-3400000.tar.gz
