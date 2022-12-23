@@ -3,6 +3,9 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 urlpatterns = [
     path("",include("core.urls", namespace="core")),
     path("lists/",include("lists.urls", namespace="lists")),
@@ -12,6 +15,7 @@ urlpatterns = [
     path("reservations/",include("reservations.urls", namespace="reservations")),
     path("conversations/",include("conversations.urls", namespace="conversations")),
     path('admin/', admin.site.urls),
+    path('sentry-debug/', trigger_error),
 ]
 
 #개발 환경이 맞을경우 이미지 저장경로는 MEDIA_URL이며, 폴더는 MEDOA_ROOT로 함.
