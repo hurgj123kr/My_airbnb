@@ -58,7 +58,7 @@ class User(AbstractUser):
     email_verified = models.BooleanField(default=False)
     email_secret = models.CharField(max_length=100, default="", blank=True)
     login_method = models.CharField(_("login_method"),choices=LOGIN_CHOICES, max_length=20, default=LOGIN_EMAIL )
-    objects = core_managers.CustomModelManager()
+    objects = core_managers.CustomUserManager()
 
     def get_absolute_url(self):
         return reverse("users:profile", kwargs={"pk": self.pk})
