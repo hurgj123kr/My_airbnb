@@ -41,7 +41,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-ANOTHER_PEOPLE_APPS = ["django_countries","django_seed"]
+ANOTHER_PEOPLE_APPS = ["django_countries","django_seed", "storages"]
 
 PROJECT_APPS = [
     "users.apps.UsersConfig",
@@ -182,6 +182,18 @@ LANGUAGE_COOKIE_NAME = "django_langauge"
 #Sentry
 
 if not DEBUG:
+    
+    DEFAULT_FILE_STORAGE = "config.custom_storages.UploadStorage"
+    STATICFILES_STORAGE = "config.custom_storages.StaticStorage"
+    AWS_S3_ACCESS_KEY_ID = os.environ.get("AWS_S3_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = "myair-bnb"
+    AWS_DEFAULT_ACL = "public-read"
+
+    AWS_S3_REGION = "ap-northeast-2"
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION}.amazonaws.com"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+
     sentry_sdk.init(
         dsn=os.environ.get("SENTRY_URL"),
         integrations=[
