@@ -173,7 +173,7 @@ def kakao_callback(request):
     try:
         code = request.GET.get("code")
         REST_API_KEY = os.environ.get("KAKAO_ID")
-        redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback/"
+        redirect_uri = "http://mybnb-test.eba-vs2apwam.ap-northeast-2.elasticbeanstalk.com/users/login/kakao/callback/"
         token_request = requests.get(
             f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={REST_API_KEY}&redirect_uri={redirect_uri}&code={code}"
         )
