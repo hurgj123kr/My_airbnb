@@ -1,3 +1,5 @@
+import uuid
+import os
 from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
@@ -14,8 +16,8 @@ urlpatterns = [
     path("reviews/",include("reviews.urls", namespace="reviews")),
     path("reservations/",include("reservations.urls", namespace="reservations")),
     path("conversations/",include("conversations.urls", namespace="conversations")),
-    path('admin/', admin.site.urls),
-    path('sentry-debug/', trigger_error),
+    path(os.environ.get(f"DJANGO_ADMIN+{uuid.uuid4().hex[:10]}", "admin/"), admin.site.urls),
+    path("sentry-debug/", trigger_error),
 ]
 
 #개발 환경이 맞을경우 이미지 저장경로는 MEDIA_URL이며, 폴더는 MEDOA_ROOT로 함.
