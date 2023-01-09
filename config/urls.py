@@ -16,7 +16,7 @@ urlpatterns = [
     path("reviews/",include("reviews.urls", namespace="reviews")),
     path("reservations/",include("reservations.urls", namespace="reservations")),
     path("conversations/",include("conversations.urls", namespace="conversations")),
-    path(os.environ.get(f"DJANGO_ADMIN+{uuid.uuid4().hex[:10]}", "admin/"), admin.site.urls),
+    path(os.environ.get(f"DJANGO_ADMIN+{uuid.uuid4().hex[:10]}/", "admin/"), admin.site.urls),
     path("sentry-debug/", trigger_error),
 ]
 
