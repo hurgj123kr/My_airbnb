@@ -95,7 +95,7 @@ def verification_email(request, key):
 
 def github_login(request):
     client_id = os.environ.get("GH_ID")
-    redirect_uri = "http://mybnb-test.eba-vs2apwam.ap-northeast-2.elasticbeanstalk.com/users/login/github/callback"
+    redirect_uri = "http://mybnb-test.eba-3etc8erb.ap-northeast-2.elasticbeanstalk.com/users/login/github/callback"
     return redirect(f"https://github.com/login/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&scope=read:user")
 
 class GithubException(Exception):
@@ -161,7 +161,7 @@ def github_callback(request):
 
 def kakao_login(request):
     REST_API_KEY = os.environ.get("KAKAO_ID")
-    REDIRECT_URI = "http://mybnb-test.eba-vs2apwam.ap-northeast-2.elasticbeanstalk.com/users/login/kakao/callback/"
+    REDIRECT_URI = "http://mybnb-test.eba-3etc8erb.ap-northeast-2.elasticbeanstalk.com/users/login/kakao/callback/"
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code"
     )
@@ -173,7 +173,7 @@ def kakao_callback(request):
     try:
         code = request.GET.get("code")
         REST_API_KEY = os.environ.get("KAKAO_ID")
-        redirect_uri = "http://mybnb-test.eba-vs2apwam.ap-northeast-2.elasticbeanstalk.com/users/login/kakao/callback/"
+        redirect_uri = "http://mybnb-test.eba-3etc8erb.ap-northeast-2.elasticbeanstalk.com/users/login/kakao/callback/"
         token_request = requests.get(
             f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={REST_API_KEY}&redirect_uri={redirect_uri}&code={code}"
         )
