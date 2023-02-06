@@ -1,6 +1,6 @@
 # Mybnb
 
-#### [WEB Link](http://mybnb-test.eba-vs2apwam.ap-northeast-2.elasticbeanstalk.com/)
+#### [WEB Link](http://mybnb.eba-aw7si2pi.ap-northeast-2.elasticbeanstalk.com//)
 
 #### Description
 Cloning Airbnb with Python, Django, Tailwind and Social Login(Giuhub,Kakao)
