@@ -23,6 +23,13 @@ class RoomDetail(DetailView):
 
     """ Room Detail Definition """
     model = models.Room
+    template_name="rooms/room_detail.html"
+     
+    @login_required
+    def get(self, request):
+        detail = super().get(self,request)
+        
+
 
 class SearchView(View):
 
