@@ -20,7 +20,7 @@ class HomeView(ListView):
     ordering = "created"
     context_object_name = "rooms"
 
-@method_decorator(login_required)
+@method_decorator(login_required, name="dispatch")
 class RoomDetail(DetailView):
 
     """ Room Detail Definition """
